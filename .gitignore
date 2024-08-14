@@ -1,13 +1,4 @@
-/migrations/
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-/migrations
-# C extensions
-
-xlogi
-/__init__
+/__pycache__/
 
 # Distribution / packaging
 .Python

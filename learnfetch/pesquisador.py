@@ -90,10 +90,4 @@ class Pesquisador:
         else:
             print(f'Erro ao obter os dados: {res.status_code}')
         
-        return self.dados
-
-# Exemplo de uso
-pqr = Pesquisador()
-resultados = pqr.get_response("Fotossíntese")
-
-print(resultados)
+        return self.dados 
