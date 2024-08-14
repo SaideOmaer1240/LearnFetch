@@ -13,7 +13,7 @@ setup(
     description="Uma biblioteca para buscar e extrair dados do site 'Toda Matéria'.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url="https://github.com/seu_usuario/LearnFetch",
+    url="https://github.com/SaideOmaer1240/LearnFetch.git",
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.12",
