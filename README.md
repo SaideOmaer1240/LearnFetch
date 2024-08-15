@@ -1,4 +1,4 @@
- ```markdown
+ 
 # LearnFetch
 
 **LearnFetch** is a Python library designed to search and extract data from the 'Toda Matéria' website. It is useful for accessing information from articles and educational content programmatically.
@@ -6,11 +6,9 @@
 ## Installation
 
 To install LearnFetch, use `pip`. Make sure you have Python 3.12.3 or higher installed.
-
-```bash
+```python
 pip install LearnFetch
 ```
-
 ## Usage
 
 ### Importing the Library
@@ -85,7 +83,7 @@ For any questions or suggestions, you can reach out to:
 
 - **Author**: Saíde Omar Saíde
 - **Email**: saideomarsaideleon@gmail.com
-```
+ 
 
 ### Explanation of Sections:
 
