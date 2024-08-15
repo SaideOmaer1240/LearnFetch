@@ -1,19 +1,37 @@
 import requests as req
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup as bs  
 
 class Pesquisador:
     """
     Classe Pesquisador para realizar buscas no site 'Toda Matéria' e extrair informações relevantes.
 
-    Atributos:
-        url (str): URL base para realizar buscas.
-        domain (str): Domínio base do site 'Toda Matéria'.
-        text (str): Texto acumulado das respostas das buscas.
-        dados (list): Lista para armazenar os dados extraídos.
-
-    Métodos:
+     Métodos:
         get_response(query: str) -> list:
             Realiza a busca no site 'Toda Matéria' usando a consulta fornecida e retorna os dados encontrados.
+    Exemplo:
+     .. code-block:: python
+            from learnfetch import Pesquisador
+            # Criar uma instância da classe Pesquisador
+            researcher = Pesquisador()
+
+            # Realizar uma busca
+            termo_de_busca = input("Insira o termo de busca: ")
+            resultados = researcher.get_response(termo_de_busca)
+            # Verificar se a chave 'results' está presente no dicionário retornado
+            if resultados:
+                # Iterar sobre cada item na lista de resultados
+                for item in resultados:
+                    titulo = item.get('title', 'Título não encontrado')
+                    conteudo = item.get('content', 'Conteúdo não encontrado')
+                    print(f"Título: {titulo}")
+                    print(f"Conteúdo: {conteudo}")
+            else:
+                print("Nenhum resultado encontrado.") 
+
+
+
+
+    
     """
 
     def __init__(self):
@@ -63,26 +81,48 @@ class Pesquisador:
                             
                             content_wrapper = soup.find('div', class_='content-wrapper')
                             if content_wrapper:
-                            
                                 try:
-                                    contents = content_wrapper.find_all('p')
+                                    contents = content_wrapper.find_all(['p', 'figure']) 
+                                    
                                     self.text += f'Pesquisar sobre: {title}\n {acessando} \n {acessado} \n \n'
+                                    
                                     if contents:
                                         for content in contents:
-                                            
                                             try:
                                                 p = content.text.strip()
                                                 self.text += p + '\n'
+                                                try:
+                                                    img = content.find('img')
+                                                    # Verifica se há uma imagem correspondente para este parágrafo
+                                                    if img:
+                                                        img_src = img.get('src')
+                                                        print('Imagem encontrada!')
+                                                except:
+                                                    img_src = 'null'
+                                                
+                                                try:
+                                                    figcaption = content.find('figcaption')
+                                                    fig = figcaption.text
+                                                    self.text += f'[{fig}: {img_src}]\n'
+                                                except:
+                                                    figcaption = 'null'
+                                                
+                                            
                                             except:
                                                 print('Erro ao pegar o parágrafo novo!')
-                                        self.dados.append({"title": title, "content": self.text}) 
+                                            
+                                            
+                                             
+                                                    
+                                        self.dados.append({"title": title, "content": self.text})
                                         self.text = ''
                                     else:
                                         print('Nenhum parágrafo encontrado!')
                                 except:
                                     print('Erro ao pegar o conteúdo!')
                             else:
-                                print('Nenhum conteúdo encontrado!')    
+                                print('Nenhum conteúdo encontrado!')
+                            
                         except:
                             print('Erro ao acessar o conteúdo do artigo')
                 except:
@@ -91,3 +131,4 @@ class Pesquisador:
             print(f'Erro ao obter os dados: {res.status_code}')
         
         return self.dados 
+

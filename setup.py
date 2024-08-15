@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="LearnFetch",
-    version="0.3.0",
+    version="0.4.0",
     packages=find_packages(),
     install_requires=[
         "requests",
         "beautifulsoup4"
     ],
-    author="Saíde Omar Saíde",
+    author="Saide Omar Saide",
     author_email="saideomarsaideleon@gmail.com",
     description="Uma biblioteca para buscar e extrair dados do site 'Toda Matéria'.",
     long_description=open('README.md').read(),
